@@ -12,7 +12,7 @@ public interface BoardService {
 
     void modify(BoardVO boardVO);
 
-    void remove(int bid);
+    int remove(int bid);
     
     void writeBoard(BoardVO boardVO);
 

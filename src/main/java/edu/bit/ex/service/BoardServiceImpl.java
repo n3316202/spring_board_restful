@@ -37,10 +37,10 @@ public class BoardServiceImpl implements BoardService {
    }
    
    @Override
-   public void remove(int bid) {
+   public int remove(int bid) {
        log.info("service:remove()..");
 
-       boardMapper.delete(bid);
+       return boardMapper.delete(bid);
    }
 
    @Override

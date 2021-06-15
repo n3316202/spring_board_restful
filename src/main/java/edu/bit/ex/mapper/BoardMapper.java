@@ -11,7 +11,7 @@ public interface BoardMapper {
     List<BoardVO> getList();
     BoardVO read(int bid);
     void update(BoardVO boardVO);
-    void delete(int bid);
+    int delete(int bid);
     void insertBoard(BoardVO boardVO);
     
     // 댓글 관련
