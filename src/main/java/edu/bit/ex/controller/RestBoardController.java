@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -88,20 +89,21 @@ public class RestBoardController {
 		return entity;
 	}
 
-	@DeleteMapping("/board/{bId}")
-	public ResponseEntity<String> rest_delete(BoardVO boardVO, Model model) {
+	@DeleteMapping("/board/{bid}")
+	public ResponseEntity<String> rest_delete(@PathVariable("bid") int bid, Model model) {
 		ResponseEntity<String> entity = null;
 		log.info("rest_delete..");
 		try {
-			boardService.remove(boardVO.getBid());
-			// ������ �����ϸ� ���� ���¸޽��� ����
+			int rn = boardService.remove(bid);
+			log.info("delete result:" + rn);
+			// 삭제가 성공하면 성공 상태메시지 저장
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			// ��� ������ �����ϸ� ���� ���¸޽��� ����
+			// 댓글 삭제가 실패하면 실패 상태메시지 저장
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-		// ���� ó�� HTTP ���� �޽��� ����
+		// 삭제 처리 HTTP 상태 메시지 리턴
 		return entity;
 
 	}
