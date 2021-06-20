@@ -50,31 +50,15 @@ public class RestBoardController {
 		mav.addObject("content_view", boardService.get(boardVO.getBid()));
 		return mav;
 	}
-	// ,
-	// @RequestParam("bContent") String bContent
-	/*
-	 * @PutMapping("/board/{bId}") public ResponseEntity<String>
-	 * rest_update(@PathVariable("bId") int bId,HttpServletRequest request){
-	 * 
-	 * String bContent = request.getParameter("bContent"); ResponseEntity<String>
-	 * entity = null;
-	 * 
-	 * log.info("rest_update.."); try { int rn = boardService.modify(boardVO);
-	 * log.info("update �Ѿ�� ����:::::" + rn); entity = new
-	 * ResponseEntity<String>("SUCCESS", HttpStatus.OK); } catch (Exception e) {
-	 * e.printStackTrace(); entity = new ResponseEntity<String>(e.getMessage(),
-	 * HttpStatus.BAD_REQUEST); }
-	 * 
-	 * 
-	 * return entity; // ���� ó�� HTTP ���� �޽��� ���� }
-	 */
 
 	@PutMapping("/board/{bId}")
 	public ResponseEntity<String> rest_update(@RequestBody BoardVO boardVO, ModelAndView modelAndView) {
-
-		ResponseEntity<String> entity = null;
+			
 		log.info("rest_update..");
+		log.info("boardVO..:" + boardVO);
 		
+		
+		ResponseEntity<String> entity = null;
 		try {
 			
 			boardService.modify(boardVO);

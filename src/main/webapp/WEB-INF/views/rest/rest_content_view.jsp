@@ -13,18 +13,18 @@
 			
 			event.preventDefault();
 			
-	        var name = $("#bName").val();
-	        var bTitle = $("#bTitle").val();
-	        var bContent = $("#bContent").val();	        
-	        var bId = $("#bId").val();
-	        console.log(bContent);
+	        var bname = $("#bName").val();
+	        var btitle = $("#bTitle").val();
+	        var bcontent = $("#bContent").val();	        
+	        var bid = $("#bId").val();
+	        console.log(bcontent);
 	        console.log($(this).attr("action"));
 	        
 	        var form = {
-	        		bId: bId,
-	        		bName: name,
-	                bContent: bContent,
-	                bTitle: bTitle
+	        		bid: bid,
+	        		bname: bname,
+	                bcontent: bcontent,
+	                btitle: btitle
 	        };
 		    //dataType: 'json',
 	        $.ajax({
