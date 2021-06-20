@@ -38,7 +38,8 @@
 								"<td>" + "이름" + "</td>"+
 								"<td>" + "제목" + "</td>"+
 								"<td>" + "날짜" + "</td>"+				
-								"<td>" + "히트" + "</td>"
+								"<td>" + "히트" + "</td>"+
+								"<td>" + "삭제" + "</td>"
 					}).appendTo("#list-table") // 이것을 테이블에붙임
 
 					if(result.length < 1){
@@ -47,15 +48,16 @@
 
 		                    $(result).each(function(){			                    			                    
 			                    htmls += '<tr>';
-			                    htmls += '<td>'+ this.bId + '</td>';
-			                    htmls += '<td>'+ this.bName + '</td>';
+			                    htmls += '<td>'+ this.bid + '</td>';
+			                    htmls += '<td>'+ this.bname + '</td>';
 			                    htmls += '<td>'
-			         			for(var i=0; i < this.bIndent; i++) { //for 문은 시작하는 숫자와 종료되는 숫자를 적고 증가되는 값을 적어요. i++ 은 1씩 증가 i+2 는 2씩 증가^^
+			         			for(var i=0; i < this.bindent; i++) { //for 문은 시작하는 숫자와 종료되는 숫자를 적고 증가되는 값을 적어요. i++ 은 1씩 증가 i+2 는 2씩 증가^^
 			         				htmls += '-'	
 			        			}
-			                    htmls += '<a href="${pageContext.request.contextPath}/content_view?bId=' + this.bId + '">' + this.bTitle + '</a></td>';
- 			                    htmls += '<td>'+ this.bDate + '</td>'; 
-			                    htmls += '<td>'+ this.bHit + '</td>';	
+			                    htmls += '<a href="${pageContext.request.contextPath}/content_view?bId=' + this.bid + '">' + this.btitle + '</a></td>';
+ 			                    htmls += '<td>'+ this.bdate + '</td>'; 
+			                    htmls += '<td>'+ this.bhit + '</td>';
+			                    htmls += '<td>'+ '<a class="a-delete" data-bid="${dto.bid}" href="${pageContext.request.contextPath}/ajax/delete?bid=' + this.bid +'">' +'삭제</a>'  +'</td>';
 			                    htmls += '</tr>';			                    		                   
 		                	});	//each end
 
@@ -73,7 +75,35 @@
 		
 		}//end	getList()	
 	</script>
-	
+	<script>
+	$(document).ready(function (){
+		
+		$(document).on("click",".a-delete",function(event){
+			//prevendDefault()는 href로 연결해 주지 않고 단순히 click에 대한 처리를 하도록 해준다.
+			event.preventDefault();
+			console.log("ajax 호출전"); 
+			//해당 tr제거
+			var trObj =  $(this).parent().parent();
+			
+			$.ajax({
+			    type : "GET",
+			    url : $(this).attr("href"),
+			    success: function (result) {       
+			        console.log(result); 
+					if(result == "SUCCESS"){
+			           //getList();
+				      $(trObj).remove();  
+				      	       
+					}					        
+			    },
+			    error: function (e) {
+			        console.log(e);
+			    }
+			})
+			 
+		});
+	});	
+	</script>
 	<script>
 		$(document).ready(function(){
 			getList();
