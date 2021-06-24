@@ -55,8 +55,7 @@ public class RestBoardController {
 	public ResponseEntity<String> rest_update(@RequestBody BoardVO boardVO, ModelAndView modelAndView) {
 			
 		log.info("rest_update..");
-		log.info("boardVO..:" + boardVO);
-		
+		log.info("boardVO..:" + boardVO);		
 		
 		ResponseEntity<String> entity = null;
 		try {
