@@ -51,7 +51,7 @@ public class RestBoardController {
 		return mav;
 	}
 
-	@PutMapping("/board/{bId}")
+	@PutMapping("/board/{bid}")
 	public ResponseEntity<String> rest_update(@RequestBody BoardVO boardVO, ModelAndView modelAndView) {
 			
 		log.info("rest_update..");
