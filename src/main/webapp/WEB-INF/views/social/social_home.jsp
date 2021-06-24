@@ -30,7 +30,7 @@
 
 <c:if test="${user != null}">
 	<p>${user.kakao_account.profile.nickname}님 환영합니다.</p>
-	
+<%-- 	<img alt="그림없음" src="${user.kakao_account.profile.profile_image_url}"><br> --%>
 	<!-- <a href="member/modify">회원정보 수정</a>, <a href="member/withdrawal">회원탈퇴</a><br/> -->
 	<a href="<%=path%>/list">게시판 리스트</a><br>
 	<a href="<%=path%>/logout">로그아웃</a>

@@ -61,7 +61,6 @@ public class RestBoardController {
 		try {
 			
 			boardService.modify(boardVO);
-
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 			
 		} catch (Exception e) {
